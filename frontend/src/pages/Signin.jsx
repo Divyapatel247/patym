@@ -21,8 +21,10 @@ function Signin() {
         <InputBox placeholder="123456" label={"Password"} onChange={(e)=>{setPassword(e.target.value)}}/>
         <div className="pt-4">
           <Button label={"Sign in"} onClick={async()=>{
-            const response = await axios.post('http://localhost:3000/api/v1/user/signin',{username,password})
-            localStorage.setItem("token",response.data.token)
+            const response = await axios.post('http://localhost:3000/api/v1/user/signin',{username,password}, {
+              withCredentials: true,
+            })
+            // localStorage.setItem("token",response.data.token)
             navigate("/dashboard")
           }}/>
         </div>

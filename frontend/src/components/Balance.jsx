@@ -6,11 +6,8 @@ function Balance() {
 
   useEffect(()=>{
     const getBalance = async()=>{
-      const res = await axios.get("http://localhost:3000/api/v1/account/balance",
-      {
-          headers:{
-            Authorization : "Bearer " + localStorage.getItem("token")
-          }
+      const res = await axios.get("http://localhost:3000/api/v1/account/balance",{
+        withCredentials: true,
       })
       const balance =  parseFloat(res.data.balance.toFixed(2))
       setValue(balance)

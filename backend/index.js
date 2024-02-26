@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const rootRouter = require("./routes/index.js");
+const cookieParser = require('cookie-parser');
+
 const connect = () => {
     mongoose
       .connect("mongodb+srv://medivyapatel27:divya@cluster0.gzsdroo.mongodb.net/paytm")
@@ -16,11 +18,12 @@ const connect = () => {
 //         console.log("Connected to MongoDB")
 
 // }
-const app = express();
 const port = 3000;
-
-app.use(cors());
+const app = express();
+app.use(cors({ credentials: true,origin: ["http://localhost:5173"]}));
+app.use(cookieParser());
 app.use(express.json());
+
 
 app.use("/api/v1",rootRouter);
 

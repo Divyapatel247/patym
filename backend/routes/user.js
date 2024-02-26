@@ -52,6 +52,7 @@ router.post('/signup', async (req, res) => {
     });
 
 })
+
 const signinBody = zod.object({
     username: zod.string().email(),
 	password: zod.string()
@@ -72,9 +73,11 @@ router.post('/signin',async (req, res) => {
 
   if (user) {
         const token = jwt.sign({userId: user._id}, JWT_SECRET);
-
-        res.json({
-            token: token
+        res.cookie("access_token", token)
+        .status(200)
+        .json({
+            // token: token,
+            message:"success"
         })
         return;
     }
