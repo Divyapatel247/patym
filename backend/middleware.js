@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
     // }
     // const token = authHeader.split(' ')[1];
 
-    const token = req.cookies.access_token;
+    const token = req.cookies.access_token
     if(!token) {
         return res.status(403).json({});
     }
